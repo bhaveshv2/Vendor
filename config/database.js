@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const config = require('config');
+//const config = require('config');
 //const db = config.get('mongomongodb+srv://VendorPortalDb:VendorPortalDb@vendorcluster.zgvk5.mongodb.net/<dbname>?retryWrites=true&w=majorityURI');
 
 const connectDB = async () => {

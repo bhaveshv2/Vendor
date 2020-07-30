@@ -23,7 +23,6 @@ const UploadedDocSchema = new Schema({
     docPath:{
         type: String, 
         required: true,
-        trim: true
     },
 
     doctype:{
@@ -31,6 +30,6 @@ const UploadedDocSchema = new Schema({
         trim: true
     }
 
-
 })
+
 module.exports = UploadedDoc  = mongoose.model('UploadedDoc', UploadedDocSchema);
