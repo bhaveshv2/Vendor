@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
     try {
-        await mongoose.connect('mongomongodb+srv://VendorPortalDb:VendorPortalDb@vendorcluster.zgvk5.mongodb.net/VendorPortalDb?retryWrites=true&w=majorityURI', {
+        await mongoose.connect('mongomongodb+srv://VendorPortalDb:VendorPortalDb@vendorcluster.zgvk5.mongodb.net/VendorPortalDb?retryWrites=true', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true

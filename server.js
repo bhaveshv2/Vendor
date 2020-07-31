@@ -8,6 +8,9 @@ const app = express();
 //Connect to Database
 connectDB();
 
+app.use(express.json({ extended: false }));
+
+
 //@routes Points to Routes Folder
 app.use('/practiceRoute', apiPracticeRoutes);
 
