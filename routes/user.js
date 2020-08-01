@@ -37,7 +37,7 @@ router.post('/createuser',async(req,res) => {
    
 })
 //updating one /patch/put
-router.patch('/:id',getUser, async (req,res) => {
+router.patch('/updateUser/:id',getUser, async (req,res) => {
     if(req.body.name != null){
         res.user.name = req.body.name
     }
@@ -63,7 +63,7 @@ router.patch('/:id',getUser, async (req,res) => {
     
 })
 //Deleting one
-router.delete('/:id',getUser, async (req,res) => {
+router.delete('/deleteUser/:id',getUser, async (req,res) => {
     try{
         await res.user.remove()
         res.json({"message": 'User deleted'})

@@ -20,7 +20,7 @@ const BillSchema = new Schema({
         trim: true
         },
 
-    bilPath:{
+    billPath:{
         type: String, 
         required: true,
     },

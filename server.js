@@ -1,7 +1,9 @@
 const express = require('express');
 const connectDB = require('./config/database');
 const path = require('path');
-const apiPracticeRoutes = require ('../Vendor/routes/practiceRoute');
+const apiUser = require ('../Vendor/routes/user');
+const apiBill = require ('../Vendor/routes/BillAPI');
+const apiUploadedDoc = require ('../Vendor/routes/UploadedDocAPI');
 
 const app = express();
 
@@ -12,7 +14,9 @@ app.use(express.json({ extended: false }));
 
 
 //@routes Points to Routes Folder
-app.use('/practiceRoute', apiPracticeRoutes);
+app.use('/user', apiUser);
+app.use('/bill',apiBill);
+app.use('/UploadedDoc',apiUploadedDoc);
 
 const PORT =  5000;
 
