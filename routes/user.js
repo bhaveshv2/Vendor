@@ -20,6 +20,34 @@ router.get('/:id',getUser, (req,res) => {
 
 //creating one 
 router.post('/createuser',async(req,res) => {
+    // Email validation 
+    const re = /\S+@\S+\.\S+/
+    if(re.test(req.body.email)){
+        console.log("Email is correct")
+    }
+    else{
+        console.log("Email is not correct")
+    }
+    //Existing User check 
+    const allUsers = User.find();
+    const duplicateUsers = allUsers.filter(function(user){
+        
+        return req.body.email === email
+    })
+    if (duplicateUsers.length === 0){
+        console.log("User does not exist")
+    }
+    else{
+        console.log("User does exist")
+    } 
+    //Phone number valdidation 
+    const phonenoRe = /^\d{10}$/
+    if (phonenoRe.test(req.body.phoneNo)){
+        console.log("Phone Number is correct")
+    }
+    else {
+        console.log("phone number is not correct")
+    }
     const user = new User({
         name: req.body.name,
         email: req.body.email,
@@ -27,6 +55,7 @@ router.post('/createuser',async(req,res) => {
         phoneNo: req.body.phoneNo,
         userType: req.body.userType
     });
+
     try{
         const newUser= await user.save();
         res.status(201).json(newUser);
@@ -88,4 +117,6 @@ async function getUser(req, res, next){
     res.user = user
     next()
 }
+
+
 module.exports = router;
