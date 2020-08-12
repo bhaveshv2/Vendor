@@ -30,7 +30,7 @@ const UploadedDocSchema = new Schema({
         trim: true
     }
 
-})
+});
 
 const UploadedDoc  = mongoose.model('UploadedDoc', UploadedDocSchema);
 
