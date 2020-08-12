@@ -2,8 +2,9 @@ const express = require('express');
 const connectDB = require('./config/database');
 const path = require('path');
 const apiUser = require ('../Vendor/routes/user');
-const apiBill = require ('../Vendor/routes/BillAPI');
+const apiBill = require ('../Vendor/routes/BillsAPI');
 const apiUploadedDoc = require ('../Vendor/routes/UploadedDocAPI');
+const auth = require('./routes/authentication');
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(express.json({ extended: false }));
 app.use('/user', apiUser);
 app.use('/bill',apiBill);
 app.use('/UploadedDoc',apiUploadedDoc);
+app.use('/auth',auth);
 
 const PORT =  5000;
 
