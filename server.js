@@ -5,8 +5,9 @@ const path = require('path');
 const apiPracticeRoutes = require ('./routes/practiceRoute');
 
 const apiUser = require ('../Vendor/routes/user');
-const apiBill = require ('../Vendor/routes/BillAPI');
+const apiBill = require ('../Vendor/routes/BillsAPI');
 const apiUploadedDoc = require ('../Vendor/routes/UploadedDocAPI');
+const auth = require('./routes/authentication');
 
 
 const app = express();
@@ -24,6 +25,7 @@ app.use('/', apiPracticeRoutes);
 app.use('/user', apiUser);
 app.use('/bill',apiBill);
 app.use('/UploadedDoc',apiUploadedDoc);
+app.use('/auth',auth);
 
 const PORT =  5000;
 
