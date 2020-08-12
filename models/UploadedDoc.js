@@ -32,4 +32,6 @@ const UploadedDocSchema = new Schema({
 
 })
 
-module.exports = UploadedDoc  = mongoose.model('UploadedDoc', UploadedDocSchema);
+const UploadedDoc  = mongoose.model('UploadedDoc', UploadedDocSchema);
+
+module.exports = UploadedDoc;

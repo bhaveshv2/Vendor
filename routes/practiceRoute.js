@@ -5,7 +5,6 @@ const User = require('../models/User');
 //get all 
 router.get('/practiceRoute', (req,res) => {
     res.send("Hello World!");
-
 })
 //getting one 
 router.get('/:id',(req,res) => {
@@ -28,4 +27,4 @@ router.delete('/:id',(req,res) => {
     
 })
 
-module.export = router;
+module.exports = router;

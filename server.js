@@ -1,7 +1,7 @@
 const express = require('express');
 const connectDB = require('./config/database');
 const path = require('path');
-const apiPracticeRoutes = require ('../Vendor/routes/practiceRoute');
+const apiPracticeRoutes = require ('./routes/practiceRoute');
 
 const app = express();
 
@@ -9,7 +9,7 @@ const app = express();
 connectDB();
 
 //@routes Points to Routes Folder
-app.use('/practiceRoute', apiPracticeRoutes);
+app.use('/', apiPracticeRoutes);
 
 const PORT =  5000;
 
