@@ -53,6 +53,7 @@ export function startSignup(){
 }
 
 export function signupFailed(errorMessage){
+    console.log(errorMessage);
     return {
         type:SIGNUP_FAILED,
         error:errorMessage
