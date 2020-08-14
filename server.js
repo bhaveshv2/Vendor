@@ -29,7 +29,7 @@ app.use('/bill',apiBill);
 app.use('/UploadedDoc',apiUploadedDoc);
 app.use('/auth',auth);
 
-const PORT =  5000;
+const PORT =  8000;
 
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);

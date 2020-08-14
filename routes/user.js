@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
-const bcrypt = require('bcryptjs');
 
 //get all 
 router.get('/', async(req,res) => {
@@ -22,26 +21,30 @@ router.get('/:id',getUser, (req,res) => {
 //creating one 
 router.post('/createuser',async(req,res) => {
     // Email validation 
-    // const re = /\S+@\S+\.\S+/
-    // if(re.test(req.body.email)){
-    //     console.log("Email is correct")
-    // }
-    // else{
-    //     console.log("Email is not correct")
-    // }
-    // //Existing User check 
-    // const allUsers = await User.findOne({'email' : req.body.email});
-    // if (allUsers){
-    //     throw Error('User already exists');
-    // }
-    // //Phone number valdidation 
-    // const phonenoRe = /^\d{10}$/
-    // if (phonenoRe.test(req.body.phoneNo)){
-    //     console.log("Phone Number is correct")
-    // }
-    // else {
-    //     console.log("phone number is not correct")
-    // }
+    const re = /\S+@\S+\.\S+/
+    if(re.test(req.body.email)){
+        console.log("Email is correct")
+    }
+    else{
+        console.log("Email is not correct")
+    }
+    //Existing User check 
+    const allUsers = User.find();
+    const duplicateUsers = allUsers.filter((user) => req.body.email === email )
+    if (duplicateUsers.length === 0){
+        console.log("User does not exist")
+    }
+    else{
+        console.log("User does exist")
+    } 
+    //Phone number valdidation 
+    const phonenoRe = /^\d{10}$/
+    if (phonenoRe.test(req.body.phoneNo)){
+        console.log("Phone Number is correct")
+    }
+    else {
+        console.log("phone number is not correct")
+    }
     const user = new User({
         name: req.body.name,
         email: req.body.email,
@@ -50,16 +53,11 @@ router.post('/createuser',async(req,res) => {
         userType: req.body.userType
     });
 
-    // const salt = await bcrypt.genSalt(10);
-
-    // user.password = await bcrypt.hash(req.body.password, salt)
-
     try{
         const newUser= await user.save();
         res.status(201).json(newUser);
     }
     catch(err){
-        console.log(err);
         res.status(400).json({message : err.message});
     }
    
