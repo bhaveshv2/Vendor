@@ -1,6 +1,7 @@
 const express = require('express');
 const connectDB = require('./config/database');
 const path = require('path');
+const cors = require('cors');
 
 const apiPracticeRoutes = require ('./routes/practiceRoute');
 
@@ -11,6 +12,7 @@ const auth = require('./routes/authentication');
 
 
 const app = express();
+app.use(cors());
 
 //Connect to Database
 connectDB();

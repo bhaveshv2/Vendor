@@ -22,26 +22,26 @@ router.get('/:id',getUser, (req,res) => {
 //creating one 
 router.post('/createuser',async(req,res) => {
     // Email validation 
-    const re = /\S+@\S+\.\S+/
-    if(re.test(req.body.email)){
-        console.log("Email is correct")
-    }
-    else{
-        console.log("Email is not correct")
-    }
-    //Existing User check 
-    const allUsers = await User.findOne({'email' : req.body.email});
-    if (allUsers){
-        throw Error('User already exists');
-    }
-    //Phone number valdidation 
-    const phonenoRe = /^\d{10}$/
-    if (phonenoRe.test(req.body.phoneNo)){
-        console.log("Phone Number is correct")
-    }
-    else {
-        console.log("phone number is not correct")
-    }
+    // const re = /\S+@\S+\.\S+/
+    // if(re.test(req.body.email)){
+    //     console.log("Email is correct")
+    // }
+    // else{
+    //     console.log("Email is not correct")
+    // }
+    // //Existing User check 
+    // const allUsers = await User.findOne({'email' : req.body.email});
+    // if (allUsers){
+    //     throw Error('User already exists');
+    // }
+    // //Phone number valdidation 
+    // const phonenoRe = /^\d{10}$/
+    // if (phonenoRe.test(req.body.phoneNo)){
+    //     console.log("Phone Number is correct")
+    // }
+    // else {
+    //     console.log("phone number is not correct")
+    // }
     const user = new User({
         name: req.body.name,
         email: req.body.email,
@@ -50,15 +50,16 @@ router.post('/createuser',async(req,res) => {
         userType: req.body.userType
     });
 
-    const salt = await bcrypt.genSalt(10);
+    // const salt = await bcrypt.genSalt(10);
 
-    user.password = await bcrypt.hash(req.body.password, salt)
+    // user.password = await bcrypt.hash(req.body.password, salt)
 
     try{
         const newUser= await user.save();
         res.status(201).json(newUser);
     }
     catch(err){
+        console.log(err);
         res.status(400).json({message : err.message});
     }
    
