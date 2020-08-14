@@ -30,10 +30,7 @@ router.post('/createuser',async(req,res) => {
     }
     //Existing User check 
     const allUsers = User.find();
-    const duplicateUsers = allUsers.filter(function(user){
-        
-        return req.body.email === email
-    })
+    const duplicateUsers = allUsers.filter((user) => req.body.email === email )
     if (duplicateUsers.length === 0){
         console.log("User does not exist")
     }
