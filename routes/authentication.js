@@ -15,27 +15,37 @@ router.post('/signin' , async(req , res) => {
 
         // See if user exists
         if (!user) {
-            return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
+            return res.status(400).json({ error: [{ message: 'Invalid Credentials' }] });
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (!isMatch) {
-            return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
+            return res.status(400).json({ error: [{ message: 'Invalid Credentials' }] });
         }
 
         const payload = {
             user: {
-                id: user.id
+                id: user.id,
+                name: user.name,
             }
         }
 
         //Return jsonwebtoken
-        jwt.sign(payload, credentials.jwtSecret,
-            { expiresIn: 360000 }, (err, token) => {
-                if (err) throw err;
-                res.json({ token });
-            });
+        const token = jwt.sign(payload, credentials.jwtSecret,{ expiresIn: 360000 });
+        
+        res.status(200).json({
+            data:{
+                token:token,
+                user:{
+                    name:user.name,
+                    email:user.email,
+                    userType:user.userType,
+                }
+            },
+            success:true,
+            message:'Signin Successful'
+        })
 
     } catch (error) {
         console.error(error.message);

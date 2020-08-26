@@ -11,12 +11,12 @@ router.get('/', async(req,res) => {
     catch(err){
         res.status(500).json({message: err.message});
     }
-})
+});
 
 //getting one 
 router.get('/:id',getBill, (req,res) => {
     res.json(res.Bill);
-})
+});
 
 //creating one 
 router.post('/createBill',async(req,res) => {
@@ -38,8 +38,6 @@ router.post('/createBill',async(req,res) => {
         billAmount: req.body.billAmount,
         gstAmount: req.body.gstAmount,
         billTotalAmount: req.body.billTotalAmount
-
-        
     });
     try{
         const newBill= await Bill.save();

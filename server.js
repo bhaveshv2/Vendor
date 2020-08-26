@@ -5,6 +5,7 @@ const apiUser = require ('../Vendor/routes/user');
 const apiBill = require ('../Vendor/routes/BillsAPI');
 const apiUploadedDoc = require ('../Vendor/routes/UploadedDocAPI');
 const auth = require('./routes/authentication');
+const cors = require('cors');
 
 const app = express();
 
@@ -12,7 +13,7 @@ const app = express();
 connectDB();
 
 app.use(express.json({ extended: false }));
-
+app.use(cors());
 
 //@routes Points to Routes Folder
 app.use('/user', apiUser);
